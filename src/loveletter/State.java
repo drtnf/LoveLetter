@@ -165,13 +165,18 @@ public class State implements Cloneable{
     int a = act.player();//actor
     int t = act.target();//target
     Card c = act.card();
-    legalAction(a,t,c,card);
+    discards[a][discardCount[a]++] = c;//put played card on the top of the acting player's discard pile, required for checking actions.
+    try{
+       legalAction(a,t,c,card);
+    }catch(IllegalActionException e){
+      discardCount[a]--;
+      throw e;//reset discard top
+    }
     if(c==hand[a]){//if the player played the card in their hand, insert the new card into their hand.
       hand[a]=card;
       for(int p = 0; p<num; p++)
         if(p!=a) known[p][a]=false;//rescind players knowledge if a known card was played
     }
-    discards[a][discardCount[a]++] = c;//put played card on the top of the acting player's discard pile
     String ret = act.toString(name(a), t!=-1?name(t):"");
     switch(c){
       case GUARD://actor plays the guard
