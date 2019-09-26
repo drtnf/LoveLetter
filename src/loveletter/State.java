@@ -382,6 +382,7 @@ public class State implements Cloneable{
 
   /**
    * returns an array of the remaining cards that haven't been played yet.
+   * Should be called unplayedCards???
    * @return an array of all cards not in the discard piles
    ***/
   public Card[] unseenCards(){
