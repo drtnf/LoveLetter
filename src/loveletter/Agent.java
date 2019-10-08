@@ -2,13 +2,13 @@ package loveletter;
 
 /**
  * An interface for representing an agent in the game Love Letter
- * All agent's must have a 0 parameter constructor
+ * All agents must have a 0 parameter constructor
  * */
 public interface Agent{
 
 
   /**
-   * Reports the agents name
+   * Reports the agent's name
    * */
   public String toString();
 
