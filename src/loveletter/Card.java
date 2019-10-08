@@ -17,14 +17,14 @@ public enum Card {
   
     private int value; //numerical value of card
     private String name; //String description of card
-    private int count; //nnumber of cards in the deck
+    private int count; //number of cards in the deck
 
 
     /**
-     * Creates the card we value, name and count.
+     * Creates the card with value, name and count.
      * @param value the value of the card
      * @param name the name of the card
-     * @param count the number of instances iof the card in a standard deck
+     * @param count the number of instances of the card in a standard deck
      * **/
     private Card(int value, String name, int count){
       this.value = value;
