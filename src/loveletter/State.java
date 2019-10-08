@@ -1,7 +1,7 @@
 package loveletter;
 
 /**This class represents the observable state of the game.
- * The class comes in two modes, one for the players, whcih has update operations disabled,
+ * The class comes in two modes, one for the players, which has update operations disabled,
  * and one for the game engine, that can update the state.
  * States of players in the same game will have common data, allowing for an efficient representation.
  * **/
@@ -18,7 +18,7 @@ public class State implements Cloneable{
   private boolean[][] known; //whether player knows another players card
   private int[] scores; //the current score of each player
   private java.util.Random random;
-  private int[] nextPlayer;//the index of the next player to draw a card (using Object reference so value is shared.
+  private int[] nextPlayer; //the index of the next player to draw a card (using Object reference so value is shared).
   private Agent[] agents;
 
   /**
@@ -88,11 +88,11 @@ public class State implements Cloneable{
    * That is 
    * a) the player a must hold card c, 
    * b) it must be player a's turn
-   * c) if the player holds the countess, they cannot play the Prince or the King
+   * c) if the player holds the Countess, they cannot play the Prince or the King
    * d) if the action has a target, they cannot be eliminated
-   * e) if the target is protected by the handmaid and their is some player other than the target and a not protected, 
+   * e) if the target is protected by the Handmaid and their is some player other than the target and a not protected, 
    *    then that player must be targetted instead. 
-   * f) if all players are protected by the handmaid and the player a plays a Prince, they must target themselves
+   * f) if all players are protected by the Handmaid and the player a plays a Prince, they must target themselves
    * @param a the index of the playing agent
    * @param t the index of the targeted player or -1, of no such target exists
    * @param c the card played 
@@ -119,11 +119,11 @@ public class State implements Cloneable{
    * That is 
    * a) the player a must hold card c, 
    * b) it must be player a's turn
-   * c) if the player holds the countess, they cannot play the Prince or the King
+   * c) if the player holds the Countess, they cannot play the Prince or the King
    * d) if the action has a target, they cannot be eliminated
-   * e) if the target is protected by the handmaid and their is some player other than the target and a not protected, 
+   * e) if the target is protected by the Handmaid and their is some player other than the target and a not protected, 
    *    then that player must be targetted instead. 
-   * f) if all players are protected by the handmaid and the player a plays a Prince, they must target themselves
+   * f) if all players are protected by the Handmaid and the player a plays a Prince, they must target themselves
    * There are other rules (such as a player not targetting themselves) that is enforced in the Action class.
    * @param act the action to be performed
    * @param drawn the card drawn by the playing agent.
@@ -156,7 +156,7 @@ public class State implements Cloneable{
    * May only be called for non-player states (i.e. the omniscient game engine state)
    * @param act the action to be performed
    * @param card the card drawn by the actor
-   * @return a plain English decsription of the action
+   * @return a plain English description of the action
    * @throws IllegalActionAxception if the state is a player state, or if the action is against the rules. 
    ***/
   public String update(Action act, Card card) throws IllegalActionException{
@@ -293,8 +293,8 @@ public class State implements Cloneable{
   }
 
   /**
-   * returns the index of the observing player, or -1 for perfect information
-   * @return the index of the observing player or -1 for perfect information.
+   * returns the index of the observing player, or -1 for perfect information.
+   * @return the index of the observing player, or -1 for perfect information.
    * **/
   public int getPlayerIndex(){return player;}
 
@@ -327,7 +327,7 @@ public class State implements Cloneable{
   }
 
   /**
-   *returns true if the nominated player is eleiminated in the round
+   *returns true if the nominated player is eliminated in the round
    * @param player the player being checked
    * @return true if and only if the player has been eliminated in the round.
    * @throws ArrayIndexoutOfBoundsException if the playerIndex is out of range.
@@ -399,7 +399,7 @@ public class State implements Cloneable{
   }
 
   /**
-   * Tests to see if the round is over, either by all but one player being eleiminated
+   * Tests to see if the round is over, either by all but one player being eliminated
    * or by all but one card being drawn from the deck.
    * @return true if and only if the round is over
    * **/
