@@ -287,9 +287,12 @@ public class State implements Cloneable{
   //countess action not required
   
   private String princessAction(int a){
+    discards[a][discardCount[a]++] = hand[a];
     hand[a]=null;
     for(int p = 0; p< num; p++) known[p][a]=true;
-    return "\nPlayer "+name(a)+" played the Princess and is eliminated.";
+    String outcome =  "\nPlayer "+name(a)+" played the Princess and is eliminated.";
+    outcome += "\n Player "+name(a)+" was also holding the "+discards[a][discardCount[a]-1]+".";
+    return outcome;
   }
 
   /**
