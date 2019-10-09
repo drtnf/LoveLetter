@@ -109,6 +109,7 @@ public class State implements Cloneable{
     if(t!=-1){//if this action has a target (1,2,3,5,6 cards)
       if(eliminated(t)) //you cannot target an eliminated player
         throw new IllegalActionException("The action's target is already eliminated");
+      if(c==Card.PRINCE && a==t) return;//a player can always target themselves with the Prince.
       if(handmaid(t) && (!allHandmaid(a) || c==Card.PRINCE))//you cannot target a player with the handmaid
         throw new IllegalActionException("The action's target is protected by the handmaid");
     } 
@@ -437,14 +438,29 @@ public class State implements Cloneable{
     return winner;
   }
 
-  public int score(int player){return scores[player];}
+  /**
+   * returns the score of the specified player
+   * @param player the player whose score is sought
+   * @return the score of the specified player
+   * **/
+  public int score(int player){
+    if(player<0 || player > num) return 0;
+    return scores[player];}
 
+  /**
+   * confirms the game is over
+   * @return true if and only if a player a acrued sufficient tokens to win the game
+   * **/
   public boolean gameOver(){
     return gameWinner()!=-1;
   }
 
+  /**
+   * Gives the index of the winning player if there is one, otherwise returns -1
+   * @return the index of the winning player, or -1 if the game is not yet over.
+   * **/
   public int gameWinner(){
-    int threshold = num==4?4:num==3?5:num==2?7:0;
+    int threshold = num==4?4:num==3?5:num==2?7:0;//sets the required threshhold for different numbers of players.
     for(int p = 0; p<num; p++)
       if(scores[p]==threshold)return p;
     return -1;

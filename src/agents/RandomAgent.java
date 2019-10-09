@@ -80,7 +80,7 @@ public class RandomAgent implements Agent{
           default:
             act = null;//never play princess
         }
-      }catch(IllegalActionException e){/*do nothing, just try again*/}  
+      }catch(IllegalActionException e){/*do nothing*/}
     }
     return act;
   }

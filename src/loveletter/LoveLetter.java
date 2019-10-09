@@ -65,6 +65,7 @@ System.out.println("Player "+gameState.nextPlayer()+" draws the "+topCard);
               "("+gameState.nextPlayer()+")\nRandom Move Substituted");
             rando.newRound(gameState.playerState(gameState.nextPlayer()));
             act = rando.playCard(topCard);
+            ps.println(gameState.update(act,topCard));
           }
           for(int p = 0; p<numPlayers; p++)
             agents[p].see(act,playerStates[p]);
