@@ -45,7 +45,7 @@ public class Action{
   public int player(){return player;}
 
   /**the target of the action for 1,2,3,5,6 cards
-   * @return the index of the taregtted player for 1,2,3,5,6 cards and -1 otherwise
+   * @return the index of the targetted player for 1,2,3,5,6 cards and -1 otherwise
    * **/
   public int target(){return target;}
 
@@ -96,7 +96,7 @@ public class Action{
   /**
    * Constructs a PRIEST action for the player seeing the targets card.
    * @param player the player performing the action
-   * @param target the player taregtted by this action
+   * @param target the player targetted by this action
    * @return the action object
    * @throws IllegalActionException if an illegal action.
    * **/
@@ -109,7 +109,7 @@ public class Action{
   /**
    * Constructs a BARON action for the player challenging another player.
    * @param player the player performing the action
-   * @param target the player taregtted by this action
+   * @param target the player targetted by this action
    * @return the action object
    * @throws IllegalActionException if an illegal action.
    * **/
@@ -132,7 +132,7 @@ public class Action{
    * Constructs a PRINCE action for the player requiring 
    * the targetted player to discard their card and draw a new one.
    * @param player the player performing the action
-   * @param target the player taregtted by this action
+   * @param target the player targetted by this action
    * @return the action object
    * **/
   public static Action playPrince(int player, int target) throws IllegalActionException{
@@ -144,7 +144,7 @@ public class Action{
    * Constructs a KING action for the player requiring 
    * swapping cards with the target.
    * @param player the player performing the action
-   * @param target the player taregtted by this action
+   * @param target the player targetted by this action
    * @return the action object
    * @throws IllegalActionException if an illegal action.
    * **/
