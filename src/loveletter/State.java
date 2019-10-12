@@ -266,12 +266,8 @@ public class State implements Cloneable{
 
   private String princeAction(int t){
     Card discard = hand[t];
-    if(discardCount[t]>0){//Place discarded card under the top of the deck
-      discards[t][discardCount[t]] = discards[t][discardCount[t]-1];
-      discards[t][discardCount[t]++-1] = discard;
-    }
-    else discards[t][discardCount[t]++] = discard;
-    if(hand[t]==Card.PRINCESS){
+    discards[t][discardCount[t]++] = discard;
+    if(discard==Card.PRINCESS){
       hand[t]=null;
       for(int p = 0; p<num; p++) known[p][t]=true;
       return "\nPlayer "+name(t)+" discarded the Princess and is eliminated.";
