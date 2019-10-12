@@ -16,6 +16,7 @@ public class State implements Cloneable{
   private Card[] deck; //the deck of remaining cards
   private int[] top; //the index of the top of the deck
   private boolean[][] known; //whether player knows another players card
+  private boolean[] handmaid;
   private int[] scores; //the current score of each player
   private java.util.Random random;
   private int[] nextPlayer; //the index of the next player to draw a card (using Object reference so value is shared).
@@ -53,6 +54,7 @@ public class State implements Cloneable{
     discards = new Card[num][16];
     discardCount = new int[num];
     hand = new Card[num];
+    handmaid = new boolean[num];
     top = new int[1];
     known = new boolean[num][num];
     for(int i = 0; i<num; i++){
@@ -178,6 +180,7 @@ public class State implements Cloneable{
       for(int p = 0; p<num; p++)
         if(p!=a) known[p][a]=false;//rescind players knowledge if a known card was played
     }
+    handmaid[a]=false;
     String ret = act.toString(name(a), t!=-1?name(t):"");
     switch(c){
       case GUARD://actor plays the guard
@@ -190,7 +193,7 @@ public class State implements Cloneable{
         ret+=baronAction(a,t);
         break;
       case HANDMAID:
-        //no update required
+        handmaid[a]=true;
         break;
       case PRINCE:
         ret+= princeAction(t);  
@@ -366,15 +369,15 @@ public class State implements Cloneable{
    * @return true if and only if the index corresponds to a player who is protected by the handmaid
    * **/
   public boolean handmaid(int player){
-    if(player<0 || player >=num || discardCount[player]==0) return false;
-    return discards[player][discardCount[player]-1]==Card.HANDMAID;
+    if(player<0 || player >=num) return false;
+    return handmaid[player];
   }
 
   //helper method to check if every other player is protected by the handmaid
   private boolean allHandmaid(int player){
     boolean noAction = true;
     for(int i = 0; i<num; i++)
-      noAction = noAction && (eliminated(i) || handmaid(i) || i==player); 
+      noAction = noAction && (eliminated(i) || handmaid[i] || i==player); 
     return noAction;
   }
 
