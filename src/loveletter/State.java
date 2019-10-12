@@ -262,7 +262,12 @@ public class State implements Cloneable{
   //handmaid action requires no update
 
   private String princeAction(int t){
-    discards[t][discardCount[t]++] = hand[t];
+    Card discard = hand[t];
+    if(discardCount[t]>0){//Place discarded card under the top of the deck
+      discards[t][discardCount[t]] = discards[t][discardCount[t]-1];
+      discards[t][discardCount[t]++-1] = discard;
+    }
+    else discards[t][discardCount[t]++] = discard;
     if(hand[t]==Card.PRINCESS){
       hand[t]=null;
       for(int p = 0; p<num; p++) known[p][t]=true;
@@ -271,7 +276,7 @@ public class State implements Cloneable{
     hand[t]=deck[top[0]++];
     for(int p =0; p<num;p++) 
       if(p!=t)known[p][t]=false;
-    return "\nPlayer "+name(t)+" discards the "+discards[t][discardCount[t]-1]+".";
+    return "\nPlayer "+name(t)+" discards the "+discard+".";
   }
 
   private String kingAction(int a, int t){
