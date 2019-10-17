@@ -283,6 +283,13 @@ public class State implements Cloneable{
       return "\nPlayer "+name(t)+" is protected by the Handmaid.";
     known[a][t]=true;
     known[t][a]=true;
+    for(int p =0; p<num;p++){ 
+      if(p!=t && p!=a){
+        boolean tmp = known[p][t];
+        known[p][t] = known[p][a];
+        known[p][a] = tmp;
+      }
+    }
     Card tmp = hand[a];
     hand[a] = hand[t];
     hand[t] = tmp;
